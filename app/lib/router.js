@@ -1,6 +1,11 @@
 // Define the handlers
 const handlers = {};
 
+// Ping handler
+handlers.ping = function(data, callback) {
+  callback(200);
+};
+
 // sample handler
 handlers.sample = function(data, callback) {
   // Callback a http status
@@ -14,5 +19,6 @@ handlers.notFound = function(data, callback) {
 
 module.exports = {
   'sample': handlers.sample,
-  'notFound': handlers.notFound
+  'notFound': handlers.notFound,
+  'ping': handlers.ping
 }

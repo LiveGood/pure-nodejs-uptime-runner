@@ -13,8 +13,28 @@ const { StringDecoder } = require('string_decoder');
 const Logger = require('./lib/logger')
 const router = require('./lib/router')
 const { parseURL } = require('./lib/parser')
-const config = require('./config')
+const config = require('./config');
+let _data = require('./lib/data');
 const PORT = 3000;
+
+// TESTING
+
+// TODO delete this
+// _data.create('test', 'newFile', {'foo': 'bar'}, (err) => {
+//   if (err) console.error(err);
+//   else console.log('No error creating file');
+// });
+
+_data.update('test', 'newFile', {'fizz': 'buzz'}, (err) => {
+  if (err) console.error(err);
+  else console.log('No error updating file');
+});
+// _data.delete('test', 'newFile', (err, data) => {
+//   if (err) console.error(err);
+//   else console.log('No error deleting file');
+// });
+
+// TESTING
 
 // Instantiate the HTTP server
 var httpServer = http.createServer(function(req, res) {
