@@ -1,10 +1,10 @@
 
-const router = require('./router')
+const handlers = require('./handlers')
 
 function getNotFoundString(requestHandlerString) {
   return requestHandlerString == 'notFound' ? 
     '-> Not Found' :
-    router[requestHandlerString] ? 
+    handlers[requestHandlerString] ? 
     '-> Path exists' :
     ''
 }

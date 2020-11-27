@@ -11,30 +11,11 @@ const fs = require('fs');
 const { StringDecoder } = require('string_decoder');
 // External Dependencies
 const Logger = require('./lib/logger')
-const router = require('./lib/router')
+const handlers = require('./lib/handlers')
 const { parseURL } = require('./lib/parser')
 const config = require('./config');
 let _data = require('./lib/data');
 const PORT = 3000;
-
-// TESTING
-
-// TODO delete this
-// _data.create('test', 'newFile', {'foo': 'bar'}, (err) => {
-//   if (err) console.error(err);
-//   else console.log('No error creating file');
-// });
-
-_data.update('test', 'newFile', {'fizz': 'buzz'}, (err) => {
-  if (err) console.error(err);
-  else console.log('No error updating file');
-});
-// _data.delete('test', 'newFile', (err, data) => {
-//   if (err) console.error(err);
-//   else console.log('No error deleting file');
-// });
-
-// TESTING
 
 // Instantiate the HTTP server
 var httpServer = http.createServer(function(req, res) {
@@ -81,11 +62,11 @@ const unifiedServer = function(req, res) {
  
      // Chose the handler this reqesut should go to. If one is not
      console.log(trimmedPath)
-     console.log(typeof(router[trimmedPath]) !== 'undefined')
-     let requestHandlerString = typeof(router[trimmedPath]) !== 'undefined' ? 
+     console.log(typeof(handlers[trimmedPath]) !== 'undefined')
+     let requestHandlerString = typeof(handlers[trimmedPath]) !== 'undefined' ? 
        trimmedPath : 
        'notFound'
-     let requestHandler = router[requestHandlerString]
+     let requestHandler = handlers[requestHandlerString]
  
      // Route the request to the handler specified in the router
      requestHandler(data, (statusCode, data) => {
