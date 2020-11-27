@@ -62,11 +62,11 @@ const unifiedServer = function(req, res) {
  
      // Chose the handler this reqesut should go to. If one is not
      console.log(trimmedPath)
-     console.log(typeof(handlers[trimmedPath]) !== 'undefined')
-     let requestHandlerString = typeof(handlers[trimmedPath]) !== 'undefined' ? 
+     console.log(typeof(router[trimmedPath]) !== 'undefined')
+     let requestHandlerString = typeof(router[trimmedPath]) !== 'undefined' ? 
        trimmedPath : 
        'notFound'
-     let requestHandler = handlers[requestHandlerString]
+     let requestHandler = router[requestHandlerString]
  
      // Route the request to the handler specified in the router
      requestHandler(data, (statusCode, data) => {
@@ -85,3 +85,11 @@ const unifiedServer = function(req, res) {
      });
    });
 };
+
+
+const router = {
+  'sample': handlers.sample,
+  'notFound': handlers.notFound,
+  'ping': handlers.ping,
+  'users': handlers.users
+}
