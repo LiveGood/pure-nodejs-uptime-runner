@@ -21,8 +21,6 @@ handlers._users.post = (data, callback) => {
     type: 'string', 
     trim: true
   });
-
- 
 };
 
 // Ping handler
